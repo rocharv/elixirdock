@@ -1,0 +1,6 @@
+# Remove vscode setting directory
+.vscode/
+
+# Remove files inside postgres_data
+postgres_data/*
+!postgres_data/YOUR_POSTGRES_DATA_DIR_GOES_HERE
