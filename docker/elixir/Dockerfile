@@ -1,8 +1,8 @@
-FROM erlang:18
+FROM erlang:21
 
 # Setting for specific Elixir version
 # (note: depending on Elixir version, you must choose a diferent Erlang image as well)
-ENV ELIXIR_VERSION="1.3.1" \
+ENV ELIXIR_VERSION="1.6.6" \
 	LANG=C.UTF-8 \
 	MIX_ENV=dev \
 	PHOENIX_VERSION="1.2.5"
