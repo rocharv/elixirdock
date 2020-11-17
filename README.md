@@ -58,7 +58,7 @@ So my goal here is to help you set a development environment using only 2 contai
 2. Clone this repository using `git clone` to your development directory and set it as the current directory:
 
     ```bash
-    /your/path$ git clone https://github.com/rocharv/dev_elixir.git elixir_dev
+    /your/path$ git clone https://github.com/rocharv/dev_elixir.git dev_elixir
     /your/path$ cd elixir_dev
     /your/path/elixir_dev$
     ```
