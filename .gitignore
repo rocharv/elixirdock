@@ -1,10 +1,6 @@
 # Remove vscode settings directory
 .vscode/
 
-# Remove files inside postgres_data
-postgres_data/*
-!postgres_data/YOUR_POSTGRES_DATA_DIR_GOES_HERE
-
-# Remove files inside elixir
-elixir/*
-!elixir/YOUR_ELIXIR_APPS_GO_HERE
+# Remove Elixir apps and Postgres data directories
+elixir_apps/
+postgres_data/

@@ -1,4 +1,4 @@
-FROM erlang:21
+FROM erlang:21-slim
 
 # Setting for specific Elixir version
 # (note: depending on Elixir version, you must choose a diferent Erlang image as well)

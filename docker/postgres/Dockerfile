@@ -1,5 +1,5 @@
-FROM postgres:13
+FROM postgres:9.5
 
 # Default user and his password
-ENV POSTGRES_USER="user"
-ENV POSTGRES_PASSWORD="password"
+ENV POSTGRES_USER="postgres"
+ENV POSTGRES_PASSWORD="postgres"

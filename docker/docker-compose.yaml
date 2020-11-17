@@ -1,9 +1,9 @@
 version: "3"
 
 services:
-  postgres_service:
+  postgres_server:
     build: ./postgres
-    container_name: postgres_service
+    container_name: postgres_server
     networks:
       app_network:
     ports:
@@ -12,9 +12,9 @@ services:
     volumes:
       - ../postgres_data:/var/lib/postgresql/data
 
-  elixir_service:
+  elixir_server:
     build: ./elixir
-    container_name: elixir_service
+    container_name: elixir_server
     networks:
       app_network:
     ports:
