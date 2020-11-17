@@ -2,7 +2,7 @@ version: "3"
 
 services:
   postgres_server:
-    build: ./postgres
+    build: ./postgres_server
     container_name: postgres_server
     networks:
       app_network:
@@ -10,10 +10,10 @@ services:
       - "5432:5432"
     restart: unless-stopped
     volumes:
-      - ../postgres_data:/var/lib/postgresql/data
+      - "../postgres_data:/var/lib/postgresql/data"
 
   elixir_server:
-    build: ./elixir
+    build: ./elixir_server
     container_name: elixir_server
     networks:
       app_network:

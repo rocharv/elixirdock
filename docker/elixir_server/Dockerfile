@@ -7,6 +7,17 @@ ENV ELIXIR_VERSION="1.6.6" \
 	MIX_ENV=dev \
 	PHOENIX_VERSION="1.2.5"
 
+# Tools and dependencies
+RUN apt-get update -y
+RUN apt-get install --no-install-recommends --no-install-suggests -q -y \
+    ca-certificates \
+	curl \
+    git \
+	inotify-tools \
+	iputils-ping \
+    make \
+    vim
+
 # Downloading and installing Elixir
 RUN set -xe \
 	&& ELIXIR_DOWNLOAD_URL="https://github.com/elixir-lang/elixir/archive/v${ELIXIR_VERSION}.tar.gz" \
@@ -19,6 +30,10 @@ RUN set -xe \
 
 # Installing Phoenix
 RUN mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new-${PHOENIX_VERSION}.ez --force
+
+# Installing node (and npm)
+RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash - \
+    && apt-get install -y nodejs
 
 # Work directory
 WORKDIR /var/www/

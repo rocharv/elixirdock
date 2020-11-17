@@ -10,7 +10,7 @@ down: ## Shut down Elixir and Postgres containers
 
 exec: ## Open Elixir container interactive pseudo tty
 	@echo "Makefile: Opening container interactive pseudo tty..."
-	@docker exec -it elixir_service /bin/bash
+	@docker exec -it elixir_server /bin/bash
 
 up: ## Start Elixir and Postgres containers up
 	@echo "Makefile: Creating and starting container..."
