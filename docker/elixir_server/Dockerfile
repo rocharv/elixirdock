@@ -1,6 +1,7 @@
 ARG ERLANG_VERSION
 
 FROM erlang:${ERLANG_VERSION}
+
 # Dev enviroment
 ENV lANG=C.UTF-8 \
 	MIX_ENV=dev
