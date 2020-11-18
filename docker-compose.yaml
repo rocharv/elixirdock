@@ -15,7 +15,7 @@ services:
     networks:
       app_network:
     ports:
-      - "4000:4000"
+      - "${ERLANG_CONTAINER_PORTS}"
     restart: unless-stopped
     volumes:
       - "./elixir_apps/:/var/www/"
@@ -32,7 +32,7 @@ services:
     networks:
       app_network:
     ports:
-      - "5432:5432"
+      - "${POSTGRES_CONTAINER_PORTS}"
     restart: unless-stopped
     volumes:
       - "./postgres_data:/var/lib/postgresql/data"

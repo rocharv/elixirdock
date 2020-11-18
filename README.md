@@ -78,6 +78,9 @@ You're not alone! This repo uses containers to set your mind free from dependenc
     # ---------------------------------------------------------
     ERLANG_VERSION=21-slim
 
+    # Container ports (host:container)
+    ERLANG_CONTAINER_PORTS=4000:4000
+
     # ---------------------------------------------------------
     # Elixir version
     # ---------------------------------------------------------
@@ -98,8 +101,6 @@ You're not alone! This repo uses containers to set your mind free from dependenc
     # ---------------------------------------------------------
     PHOENIX_VERSION=1.2.5
 
-    # Phoenix default port
-
     # ---------------------------------------------------------
     # Postgres version
     # ---------------------------------------------------------
@@ -110,17 +111,24 @@ You're not alone! This repo uses containers to set your mind free from dependenc
     # ---------------------------------------------------------
     POSTGRES_VERSION=9.5
 
+    #Container ports (host:container)
+    POSTGRES_CONTAINER_PORTS=5432:5432
+
     # Default user and his password
     POSTGRES_USER=postgres
     POSTGRES_PASSWORD=postgres
 
     ```
->Note: Check out the **Reference** section to get help choosing versions that work one another.
+    >Note: Check out the **Reference** section to get help choosing versions that work one another.
 4. Build your containers using `make` to gain productivity.
     ```bash
     /your/path/elixirdock$ make setup
     ```
+5. You are **all set**! Now you can access the terminal of `elixir_server` container and run your apps:
+    ```bash
+    /your/path/elixirdock$ make open
 
+    ```
 ## Reference: choosing versions
 
 ### Postgres
@@ -133,28 +141,33 @@ You're not alone! This repo uses containers to set your mind free from dependenc
     -|-
     8.4, 9.0-9.6 or later | **hstore** is not supported on 8.4
 
-2. Under the hood, **elixirdoc** creates a container called `postgres_server`
-
 >Source: https://github.com/elixir-ecto/postgrex
+
+2. Under the hood, **elixirdoc** creates a container called `postgres_server`. This container is based on `postgres` docker image, thus the `POSTGRES_VERSION` in `.env` file should be a valid tag of this [docker image](https://hub.docker.com/_/erlang).
+
 
 ### Erlang and Elixir versions
 
-ELIXIR VERSION | SUPPORTED ERLANG/OTP VERSIONS
--|-
-1.0 | 17 - 17 (and Erlang/OTP 18 from v1.0.5)
-1.1	| 17 - 18
-1.2	| 18 - 18 (and Erlang/OTP 19 from v1.2.6)
-1.3	| 18 - 19
-1.4	| 18 - 19 (and Erlang/OTP 20 from v1.4.5)
-1.5	| 18 - 20
-1.6	| 19 - 20 (and Erlang/OTP 21 from v1.6.6)
-1.7	| 19 - 22
-1.8	| 20 - 22
-1.9	| 20 - 22
-1.10 | 21 - 22 (and Erlang/OTP 23 from v1.10.3)
-1.11 | 21 - 23
+1. **Erlang** and **Elixir** compatible versions:
 
->Source: https://hexdocs.pm/elixir/compatibility-and-deprecations.html#compatibility-between-elixir-and-erlang-otp
+    ELIXIR VERSION | SUPPORTED ERLANG/OTP VERSIONS
+    -|-
+    1.0 | 17 - 17 (and Erlang/OTP 18 from v1.0.5)
+    1.1	| 17 - 18
+    1.2	| 18 - 18 (and Erlang/OTP 19 from v1.2.6)
+    1.3	| 18 - 19
+    1.4	| 18 - 19 (and Erlang/OTP 20 from v1.4.5)
+    1.5	| 18 - 20
+    1.6	| 19 - 20 (and Erlang/OTP 21 from v1.6.6)
+    1.7	| 19 - 22
+    1.8	| 20 - 22
+    1.9	| 20 - 22
+    1.10 | 21 - 22 (and Erlang/OTP 23 from v1.10.3)
+    1.11 | 21 - 23
+
+    >Source: https://hexdocs.pm/elixir/compatibility-and-deprecations.html#compatibility-between-elixir-and-erlang-otp
+
+2. Under the hood, **elixirdoc** creates a container called `elixir_server`. This container is based on `erlang` docker image, thus the `ERLANG_VERSION` in `.env` file should be a valid tag of this [docker image](https://hub.docker.com/_/postgres).
 
 ### Phoenix
 Choose a valid release version listed as a tag on the **github** page of **Phoenix**:
