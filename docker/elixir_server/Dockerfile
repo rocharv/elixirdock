@@ -32,7 +32,13 @@ RUN set -xe \
 # Installing Phoenix
 ARG PHOENIX_VERSION
 
-RUN mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new-${PHOENIX_VERSION}.ez --force
+# versions older than 1.3
+RUN if mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new-${PHOENIX_VERSION}.ez --force; \
+	then echo "old version installed" else echo "new version  installation discarded"; fi
+
+# newer versions
+RUN if mix archive.install hex phx_new ${PHOENIX_VERSION}; \
+	then echo "new version installed"; else echo "old version installation discarded"; fi
 
 # Installing node (and npm)
 RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash - \
