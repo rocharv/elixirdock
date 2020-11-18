@@ -167,7 +167,7 @@ You're not alone! This repo uses containers to set your mind free from dependenc
 
 >Source: https://github.com/elixir-ecto/postgrex
 
-2. Under the hood, **elixirdoc** creates a container called `postgres_server`. This container is based on `postgres` docker image, thus the `POSTGRES_VERSION` in `.env` file should be a valid tag of this [docker image](https://hub.docker.com/_/erlang).
+2. Under the hood, **elixirdoc** creates a container called `postgres_server`. This container is based on `postgres` docker image, thus the `POSTGRES_VERSION` in `.env` file should be a valid tag of this [docker image](https://hub.docker.com/_/postgres).
 
 
 ### Erlang and Elixir versions
@@ -191,7 +191,7 @@ You're not alone! This repo uses containers to set your mind free from dependenc
 
     >Source: https://hexdocs.pm/elixir/compatibility-and-deprecations.html#compatibility-between-elixir-and-erlang-otp
 
-2. Under the hood, **elixirdoc** creates a container called `elixir_server`. This container is based on `erlang` docker image, thus the `ERLANG_VERSION` in `.env` file should be a valid tag of this [docker image](https://hub.docker.com/_/postgres).
+2. Under the hood, **elixirdoc** creates a container called `elixir_server`. This container is based on `erlang` docker image, thus the `ERLANG_VERSION` in `.env` file should be a valid tag of this [docker image](https://hub.docker.com/_/erlang).
 
 ### Phoenix
 Choose a valid release version listed as a tag on the **github** page of **Phoenix**:

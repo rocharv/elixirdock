@@ -7,6 +7,7 @@ open: ## Open elixir container interactive pseudo tty
 
 setup: ## Setup Elixir and Postgres containers
 	@echo "Makefile: Creating and starting containers..."
+	@mkdir -p elixir_apps/
 	@docker-compose --file docker-compose.yaml up -d
 
 	@echo "Makefile: Listing containers..."
@@ -14,6 +15,7 @@ setup: ## Setup Elixir and Postgres containers
 
 setup-recreate: ## Recreate and start elixir and postgres containers
 	@echo "Makefile: Recreate and starting containers..."
+	@mkdir -p elixir_apps/
 	@docker-compose --file docker-compose.yaml up -d --build --force-recreate
 
 	@echo "Makefile: Listing containers..."
