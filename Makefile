@@ -19,8 +19,8 @@ setup-recreate: ## Recreate and start elixir and postgres containers
 	@echo "Makefile: Listing containers..."
 	@docker ps
 
-shutdown: ## Shut down Elixir and Postgres containers
-	@echo "Makefile: Stopping and removing container..."
+shutdown: ## Shut down elixir and postgres containers
+	@echo "Makefile: Stopping and removing containers..."
 	@docker-compose --file docker-compose.yaml down --v
 
 	@echo Makefile: Listing containers...

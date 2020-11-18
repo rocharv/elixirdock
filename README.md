@@ -150,7 +150,7 @@ You're not alone! This repo uses containers to set your mind free from dependenc
     open                           Open elixir container interactive pseudo tty
     setup-recreate                 Recreate and start elixir and postgres containers
     setup                          Set up elixir and postgres containers
-    shutdown                       Shut down Elixir and Postgres containers
+    shutdown                       Shut down elixir and postgres containers
     ```
 
 ## Reference: choosing versions
