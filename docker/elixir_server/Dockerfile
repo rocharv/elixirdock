@@ -2,9 +2,14 @@ ARG ERLANG_VERSION
 
 FROM erlang:${ERLANG_VERSION}
 
-# Dev enviroment
-ENV lANG=C.UTF-8 \
+# Locale and setting dev enviroment
+ENV LANG=C.UTF-8 \
 	MIX_ENV=dev
+
+RUN apt-get update && apt-get install -y --no-install-recommends locales export LANG=en_US.UTF-8 \
+    && echo $LANG UTF-8 > /etc/locale.gen \
+    && locale-gen \
+    && update-locale LANG=$LANG
 
 # Tools and dependencies
 RUN apt-get update -y

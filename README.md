@@ -127,8 +127,32 @@ You're not alone! This repo uses containers to set your mind free from dependenc
 5. You are **all set**! Now you can access the terminal of `elixir_server` container and run your apps:
     ```bash
     /your/path/elixirdock$ make open
+    Makefile: Opening container interactive pseudo tty...
+    root@9eaa60f11a17:/var/www$ iex
+    Erlang/OTP 21 [erts-10.3.5.14] [source] [64-bit] [smp:16:16] [ds:16:16:10] [async-threads:1] [hipe]
 
+    Interactive Elixir (1.6.6) - press Ctrl+C to exit (type h() ENTER for help)
+    iex(1)>
     ```
+
+6. There are other tools in `Makefile` to help you manage the container, for instance:
+    ```bash
+    /your/path/elixirdock$ make shutdown
+    Makefile: Stopping and removing containers...
+    Stopping postgres_server ... done
+    Stopping elixir_server   ... done
+    Removing postgres_server ... done
+    Removing elixir_server   ... done
+    ```
+    You can see all tools in `Makefile` by typing just `make`:
+    ```bash
+    /your/path/elixirdock$ make
+    open                           Open elixir container interactive pseudo tty
+    setup-recreate                 Recreate and start elixir and postgres containers
+    setup                          Set up elixir and postgres containers
+    shutdown                       Shut down Elixir and Postgres containers
+    ```
+
 ## Reference: choosing versions
 
 ### Postgres
