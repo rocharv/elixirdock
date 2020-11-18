@@ -3,7 +3,7 @@ help:
 
 down: ## Shut down Elixir and Postgres containers
 	@echo "Makefile: Stopping and removing container..."
-	@docker-compose --file docker/docker-compose.yaml down --v
+	@docker-compose --file docker-compose.yaml down --v
 
 	@echo Makefile: Listing containers...
 	@docker ps
@@ -14,14 +14,14 @@ exec: ## Open Elixir container interactive pseudo tty
 
 up: ## Start Elixir and Postgres containers up
 	@echo "Makefile: Creating and starting container..."
-	@docker-compose --file docker/docker-compose.yaml up -d --build --force-recreate
+	@docker-compose --file docker-compose.yaml up -d
 
 	@echo "Makefile: Listing containers..."
 	@docker ps
 
 up-recreate: ## Recreate and Start Elixir and Postgres containers up
 	@echo "Makefile: Recreating and starting container..."
-	@docker-compose --file docker/docker-compose.yaml up -d --build --force-recreate
+	@docker-compose --file docker-compose.yaml up -d --build --force-recreate
 
 	@echo "Makefile: Listing containers..."
 	@docker ps

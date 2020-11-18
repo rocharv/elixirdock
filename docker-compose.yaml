@@ -1,0 +1,38 @@
+version: "3"
+
+networks:
+  app_network:
+
+services:
+  elixir_server:
+    build:
+      args:
+        - ELIXIR_VERSION=${ELIXIR_VERSION}
+        - ERLANG_VERSION=${ERLANG_VERSION}
+        - PHOENIX_VERSION=${PHOENIX_VERSION}
+      context: ./docker/elixir_server
+    container_name: elixir_server
+    networks:
+      app_network:
+    ports:
+      - "4000:4000"
+    restart: unless-stopped
+    volumes:
+      - "./elixir_apps/:/var/www/"
+
+  postgres_server:
+    build:
+      args:
+        - POSTGRES_VERSION=${POSTGRES_VERSION}
+      context: ./docker/postgres_server
+    container_name: postgres_server
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER}
+    networks:
+      app_network:
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    volumes:
+      - "./postgres_data:/var/lib/postgresql/data"

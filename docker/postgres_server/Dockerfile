@@ -1,5 +1,3 @@
-FROM postgres:9.5
+ARG POSTGRES_VERSION
 
-# Default user and his password
-ENV POSTGRES_USER="postgres"
-ENV POSTGRES_PASSWORD="postgres"
+FROM postgres:${POSTGRES_VERSION}

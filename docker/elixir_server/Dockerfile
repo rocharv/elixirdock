@@ -1,11 +1,9 @@
-FROM erlang:21-slim
+ARG ERLANG_VERSION
 
-# Setting for specific Elixir version
-# (note: depending on Elixir version, you must choose a diferent Erlang image as well)
-ENV ELIXIR_VERSION="1.6.6" \
-	LANG=C.UTF-8 \
-	MIX_ENV=dev \
-	PHOENIX_VERSION="1.2.5"
+FROM erlang:${ERLANG_VERSION}-slim
+# Dev enviroment
+ENV lANG=C.UTF-8 \
+	MIX_ENV=dev
 
 # Tools and dependencies
 RUN apt-get update -y
@@ -19,6 +17,8 @@ RUN apt-get install --no-install-recommends --no-install-suggests -q -y \
     vim
 
 # Downloading and installing Elixir
+ARG ELIXIR_VERSION
+
 RUN set -xe \
 	&& ELIXIR_DOWNLOAD_URL="https://github.com/elixir-lang/elixir/archive/v${ELIXIR_VERSION}.tar.gz" \
 	&& curl -fSL -o elixir-src.tar.gz $ELIXIR_DOWNLOAD_URL \
@@ -29,6 +29,8 @@ RUN set -xe \
 	&& make install clean
 
 # Installing Phoenix
+ARG PHOENIX_VERSION
+
 RUN mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new-${PHOENIX_VERSION}.ez --force
 
 # Installing node (and npm)
