@@ -5,7 +5,7 @@
 
 - Do you think installing **Postgres** in your development system is a tricky business?
 
-- Worried about overloading your system with tons of dependencies and apps, making it slow, less productive?
+- Worried about overloading your system with tons of dependencies and apps, making it slower, less productive?
 
 - Needing a specific version for **Elixir**, **Phoenix** and/or **Postgres** to run your tests and development smoothly?
 
@@ -13,40 +13,46 @@
 
 You're not alone! This repo uses containers to set your mind free from dependency problems for this stack.
 
+## How it works
+
+<p align="center">
+  <img src="./docker/.assets/how_it_works.svg" />
+</p>
+
 ## Setup instructions
 
 1. Make sure you have `make`, `git`, `docker`, and `docker-compose` installed in your system. If you don't, please follow the instructions provided bellow:
 
     ### Installing **make**
 
-    #### *Debian/Ubuntu users*
+    ##### |*Debian/Ubuntu users*|
     ```bash
     sudo apt install make
     ```
 
-    #### *Mac users*
+    ##### |*Mac users*|
     ```bash
     $ brew install make
     ```
-    #### *Windows users*
+    ##### |*Windows users*|
 
     [http://gnuwin32.sourceforge.net/packages/make.htm](http://gnuwin32.sourceforge.net/packages/make.htm)
 
     ### Installing **git**
 
-    #### *All users*
+    ##### |*All users*|
 
     [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
     ### Installing **docker**
 
-    #### *All users*
+    ##### |*All users*|
 
     [https://docs.docker.com/get-docker/](https://docs.docker.com/get-docker/)
 
     ### Installing **docker-compose**
 
-    #### *All users*
+    ##### |*All users*|
 
     [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
 
@@ -56,34 +62,82 @@ You're not alone! This repo uses containers to set your mind free from dependenc
     ```bash
     /your/path$ git clone https://github.com/rocharv/elixirdock.git
     /your/path$ cd elixirdock
-    /your/path/elixir_dev$
+    /your/path/elixirdock$
     ```
 
-3. Edit the provided  `.env` file to customize your versions. The default is to use the last stable version of each software:
+3. Edit the provided  `.env` file to customize your versions. The default is set to work with [Udemy's The Complete Elixir and Phoenix Bootcamp](https://www.udemy.com/course/the-complete-elixir-and-phoenix-bootcamp-and-tutorial/) as shown bellow:
     ```bash
-    /your/path/elixir_dev$ cat .env
+    /your/path/elixirdock$ cat .env
+    # ---------------------------------------------------------
+    # Erlang version (base container)
+    # ---------------------------------------------------------
+    # Check all valid tags at:
+    # https://hub.docker.com/_/erlang?tab=tags
+    #
+    # examples: 19, 20, 21, 22, 23, slim, latest ...
+    # ---------------------------------------------------------
+    ERLANG_VERSION=21-slim
+
+    # ---------------------------------------------------------
+    # Elixir version
+    # ---------------------------------------------------------
+    # Check all valid releases at:
+    # https://github.com/elixir-lang/elixir/releases
+    #
+    # examples: 1.6.6, 1.11.2, ...
+    # ---------------------------------------------------------
+    ELIXIR_VERSION=1.6.6
+
+    # ---------------------------------------------------------
+    # Phoenix version
+    # ---------------------------------------------------------
+    # Check all valid releases at:
+    # https://github.com/phoenixframework/phoenix/releases
+    #
+    # examples: 1.2.5, 1.5.6, ...
+    # ---------------------------------------------------------
+    PHOENIX_VERSION=1.2.5
+
+    # Phoenix default port
+
+    # ---------------------------------------------------------
+    # Postgres version
+    # ---------------------------------------------------------
+    # Check all valid tags at:
+    # https://hub.docker.com/_/postgres?tab=tags
+    #
+    # examples: 9, 9.5, 10, 11, 12, 13, latest, ...
+    # ---------------------------------------------------------
+    POSTGRES_VERSION=9.5
+
+    # Default user and his password
+    POSTGRES_USER=postgres
+    POSTGRES_PASSWORD=postgres
 
     ```
 >Note: Check out the **Reference** section to get help choosing versions that work one another.
 4. Build your containers using `make` to gain productivity.
     ```bash
-    /your/path/elixir_dev$ make up
+    /your/path/elixirdock$ make setup
     ```
 
-## Reference: Choosing compatible versions
+## Reference: choosing versions
 
 ### Postgres
-You can choose almost any Postgres version you like. Just as a reminder, Phoenix uses `postgrex` Elixir lib to work.
+1. Versions that work with **Elixir** and **Phoenix**:
 
-So please feel free to choose among one of these versions for your Elixir apps:
+    You can choose almost any Postgres version you like. Just as a reminder, Phoenix uses `postgrex` Elixir lib to work.
+    So please feel free to choose among one of these versions for your Elixir apps:
 
-POSTGRES VERSIONS | COMMENT
--|-
-8.4, 9.0-9.6 or later | **hstore** is not supported on 8.4
+    POSTGRES VERSIONS | COMMENT
+    -|-
+    8.4, 9.0-9.6 or later | **hstore** is not supported on 8.4
+
+2. Under the hood, **elixirdoc** creates a container called `postgres_server`
 
 >Source: https://github.com/elixir-ecto/postgrex
 
-### Elixir and Erlang versions
+### Erlang and Elixir versions
 
 ELIXIR VERSION | SUPPORTED ERLANG/OTP VERSIONS
 -|-
