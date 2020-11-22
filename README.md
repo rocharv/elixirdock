@@ -148,9 +148,10 @@ You're not alone! This repo uses containers to set your mind free from dependenc
     ```bash
     /your/path/elixirdock$ make
     open                           Open elixir container interactive pseudo tty
-    setup-recreate                 Recreate and start elixir and postgres containers
-    setup                          Set up elixir and postgres containers
+    setup-recreate                 Delete, recreate and start elixir and postgres containers
+    setup                          Set up, for the first time use, elixir and postgres containers
     shutdown                       Shut down elixir and postgres containers
+    start                          Start elixir and postgres containers (considering setup was done)
     ```
 
 ## Reference: choosing versions
