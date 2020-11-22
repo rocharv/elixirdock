@@ -8,17 +8,21 @@ ENV MIX_ENV=dev
 # Remove apt warning related to Node installation
 ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
 
+# Update and upgrade packages
+RUN apt-get update -y
+RUN apt-get upgrade -y
+
 # Setting appropriate locale
 ENV LANG=C.UTF-8
 
-RUN apt-get update && apt-get install -y --no-install-recommends locales \
+RUN apt-get install -y --no-install-recommends locales \
     && echo $LANG UTF-8 > /etc/locale.gen \
     && locale-gen \
     && update-locale LANG=$LANG
 
 # Tools and dependencies
-RUN apt-get update -y
 RUN apt-get install --no-install-recommends --no-install-suggests -q -y \
+	apt-utils \
 	ca-certificates \
 	curl \
     git \
@@ -26,6 +30,7 @@ RUN apt-get install --no-install-recommends --no-install-suggests -q -y \
 	iputils-ping \
     make \
     vim
+
 
 # Installing node (and npm)
 RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash - \
@@ -56,6 +61,10 @@ RUN if mix archive.install https://github.com/phoenixframework/archives/raw/mast
 # newer versions
 RUN if mix archive.install hex phx_new ${PHOENIX_VERSION}; \
 	then echo "new version installed"; else echo "new version installation (phoenix version >= 1.3) discarded"; fi
+
+# Clean up installation
+RUN apt-get autoremove -y
+RUN apt-get autoclean -y
 
 # Work directory
 WORKDIR /var/www/
