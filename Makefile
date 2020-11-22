@@ -14,10 +14,12 @@ setup: ## Setup Elixir and Postgres containers
 	@echo "Makefile: Listing containers..."
 	@docker ps
 
-setup-recreate: ## Recreate and start elixir and postgres containers
+setup-recreate: ## Delete, recreate and start elixir and postgres containers
 	@echo "Makefile: Recreate and starting containers..."
 	@mkdir -p elixir_apps/
 	@chmod g+s elixir_apps/
+	@$(MAKE) shutdown
+	@docker rmi -f elixir_elixir_server elixir_postgres_server
 	@docker-compose --file docker-compose.yaml up -d --build --force-recreate
 
 	@echo "Makefile: Listing containers..."
