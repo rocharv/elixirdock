@@ -76,7 +76,7 @@ You're not alone! This repo uses containers to set your mind free from dependenc
     #
     # examples: 19, 20, 21, 22, 23, slim, latest ...
     # ---------------------------------------------------------
-    ERLANG_VERSION=21-slim
+    ERLANG_VERSION=22-slim
 
     # Container ports (host:container)
     ERLANG_CONTAINER_PORTS=4000:4000

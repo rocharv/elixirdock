@@ -5,6 +5,9 @@ FROM erlang:${ERLANG_VERSION}
 # Locale and setting dev enviroment
 ENV MIX_ENV=dev
 
+# Remove apt warning related to Node installation
+ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=1
+
 # Setting appropriate locale
 ENV LANG=C.UTF-8
 
@@ -16,13 +19,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends locales \
 # Tools and dependencies
 RUN apt-get update -y
 RUN apt-get install --no-install-recommends --no-install-suggests -q -y \
-    ca-certificates \
+	ca-certificates \
 	curl \
     git \
 	inotify-tools \
 	iputils-ping \
     make \
     vim
+
+# Installing node (and npm)
+RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash - \
+    && apt-get install -y nodejs
 
 # Downloading and installing Elixir
 ARG ELIXIR_VERSION
@@ -36,20 +43,19 @@ RUN set -xe \
 	&& cd /usr/local/src/elixir \
 	&& make install clean
 
+# Installing Hex
+RUN mix local.hex --force
+
 # Installing Phoenix
 ARG PHOENIX_VERSION
 
 # versions older than 1.3
 RUN if mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new-${PHOENIX_VERSION}.ez --force; \
-	then echo "old version installed" else echo "new version  installation discarded"; fi
+	then echo "old version installed" else echo "old version installation (phoenix version < 1.3) discarded"; fi
 
 # newer versions
 RUN if mix archive.install hex phx_new ${PHOENIX_VERSION}; \
-	then echo "new version installed"; else echo "old version installation discarded"; fi
-
-# Installing node (and npm)
-RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash - \
-    && apt-get install -y nodejs
+	then echo "new version installed"; else echo "new version installation (phoenix version >= 1.3) discarded"; fi
 
 # Work directory
 WORKDIR /var/www/
