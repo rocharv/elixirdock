@@ -161,7 +161,7 @@ You're not alone! This repo uses containers to set your mind free from dependenc
 
  - [Remote - Container](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension to be able to connect to the `elixir_server` container directly and avoid permission problems.
 <p align="center">
-    <img src="https://microsoft.github.io/vscode-remote-release/images/remote-containers-readme.gif">
+    <img src="./docker/.assets/remote-container.png">
  </p>
 
 > A good guide of how to configure these extensions to code **Elixir** using remote containers can be found [here](https://ilhub.io/blog/2019/05/30/vscode-remote).
