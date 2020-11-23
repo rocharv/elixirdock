@@ -73,7 +73,7 @@ You're not alone! This repo uses containers to set your mind free from dependenc
     # Check all valid tags at:
     # https://hub.docker.com/_/erlang?tab=tags
     #
-    # examples: 19, 20, 21, 22, 23, slim, latest ...
+    # examples: 19, 20, 21, 22, 23, slim, latest, ...
     # ---------------------------------------------------------
     ERLANG_VERSION=22-slim
 
@@ -118,7 +118,8 @@ You're not alone! This repo uses containers to set your mind free from dependenc
     POSTGRES_PASSWORD=postgres
 
     ```
-    >Note: Check out the **Reference** section to get help choosing versions that work one another.
+    >Note: Check out the **Reference** section to get help choosing versions that work better together.
+
 4. Build your containers using `make` to gain productivity.
     ```bash
     /your/path/elixirdock$ make setup
@@ -134,7 +135,7 @@ You're not alone! This repo uses containers to set your mind free from dependenc
     iex(1)>
     ```
 
-6. There are other tools in `Makefile` to help you manage the container, for instance:
+6. There are other tools in `Makefile` to help you manage the containers:
     ```bash
     /your/path/elixirdock$ make shutdown
     Makefile: Stopping and removing containers...
@@ -153,7 +154,7 @@ You're not alone! This repo uses containers to set your mind free from dependenc
     start                          Start elixir and postgres containers (considering setup was done)
     ```
 
-7. Many people in **Elixir** community uses [Visual Studio Code](https://code.visualstudio.com/) as their primary editor. If you decide to choose this tool, it's recommended that you also install these very useful extensions:
+7. Many people in **Elixir** community use [Visual Studio Code](https://code.visualstudio.com/) as their primary editor. If you decide to choose this tool, it's recommended that you also install these very useful extensions:
  - [ElixirLS: Elixir support and debugger](https://marketplace.visualstudio.com/items?itemName=JakeBecker.elixir-ls) for autocompletion, code lint,  syntax highlighting and much more.
 <p align="center">
   <img src="./docker/.assets/elixirls.png" />
@@ -164,14 +165,14 @@ You're not alone! This repo uses containers to set your mind free from dependenc
     <img src="./docker/.assets/remote-container.png">
  </p>
 
-> A good guide of how to configure these extensions to code **Elixir** using remote containers can be found [here](https://ilhub.io/blog/2019/05/30/vscode-remote).
+> A good guide on how to configure these extensions to code **Elixir** using remote containers can be found [here](https://ilhub.io/blog/2019/05/30/vscode-remote).
 ## Reference: choosing versions
 
 ### Postgres
 1. Versions that work with **Elixir** and **Phoenix**:
 
-    You can choose almost any Postgres version you like. Just as a reminder, Phoenix uses `postgrex` Elixir lib to work.
-    So please feel free to choose among one of these versions for your Elixir apps:
+    You can choose almost any **Postgres** version you like. Just as a reminder, **Phoenix** uses `postgrex` **Elixir** lib to work.
+    So please feel free to choose among one of these versions for your **Elixir** apps:
 
     POSTGRES VERSIONS | COMMENT
     -|-
