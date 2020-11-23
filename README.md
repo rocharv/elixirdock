@@ -67,7 +67,6 @@ You're not alone! This repo uses containers to set your mind free from dependenc
 
 3. Edit the provided  `.env` file to customize your versions. The default is set to work with [Udemy's The Complete Elixir and Phoenix Bootcamp](https://www.udemy.com/course/the-complete-elixir-and-phoenix-bootcamp-and-tutorial/) as shown bellow:
     ```bash
-    /your/path/elixirdock$ cat .env
     # ---------------------------------------------------------
     # Erlang version (base container)
     # ---------------------------------------------------------
@@ -87,9 +86,9 @@ You're not alone! This repo uses containers to set your mind free from dependenc
     # Check all valid releases at:
     # https://github.com/elixir-lang/elixir/releases
     #
-    # examples: 1.6.6, 1.11.2, ...
+    # examples: 1.6.6, 1.8, 1.11.2, ...
     # ---------------------------------------------------------
-    ELIXIR_VERSION=1.6.6
+    ELIXIR_VERSION=1.8.2
 
     # ---------------------------------------------------------
     # Phoenix version
@@ -128,10 +127,10 @@ You're not alone! This repo uses containers to set your mind free from dependenc
     ```bash
     /your/path/elixirdock$ make open
     Makefile: Opening container interactive pseudo tty...
-    root@9eaa60f11a17:/var/www$ iex
-    Erlang/OTP 21 [erts-10.3.5.14] [source] [64-bit] [smp:16:16] [ds:16:16:10] [async-threads:1] [hipe]
+    root@6e739d500f58:/var/www# iex
+    Erlang/OTP 22 [erts-10.7.2.5] [source] [64-bit] [smp:16:16] [ds:16:16:10] [async-threads:1] [hipe]
 
-    Interactive Elixir (1.6.6) - press Ctrl+C to exit (type h() ENTER for help)
+    Interactive Elixir (1.8.2) - press Ctrl+C to exit (type h() ENTER for help)
     iex(1)>
     ```
 
@@ -154,6 +153,18 @@ You're not alone! This repo uses containers to set your mind free from dependenc
     start                          Start elixir and postgres containers (considering setup was done)
     ```
 
+7. Many people in **Elixir** community uses [Visual Studio Code](https://code.visualstudio.com/) as their primary editor. If you decide to choose this tool, it's recommended that you also install these very useful extensions:
+ - [ElixirLS: Elixir support and debugger](https://marketplace.visualstudio.com/items?itemName=JakeBecker.elixir-ls) for autocompletion, code lint,  syntax highlighting and much more.
+<p align="center">
+  <img src="./docker/.assets/elixirls.png" />
+</p>
+
+ - [Remote - Container](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension to be able to connect to the `elixir_server` container directly and avoid permission problems.
+<p align="center">
+    <img src="https://microsoft.github.io/vscode-remote-release/images/remote-containers-readme.gif">
+ </p>
+
+> A good guide of how to configure these extensions to code **Elixir** using remote containers can be found [here](https://ilhub.io/blog/2019/05/30/vscode-remote).
 ## Reference: choosing versions
 
 ### Postgres
