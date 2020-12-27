@@ -55,11 +55,11 @@ RUN mix local.hex --force
 ARG PHOENIX_VERSION
 
 # versions older than 1.3
-RUN if mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new-${PHOENIX_VERSION}.ez --force; \
+RUN if mix archive.install --force https://github.com/phoenixframework/archives/raw/master/phoenix_new-${PHOENIX_VERSION}.ez --force; \
 	then echo "old version installed" else echo "old version installation (phoenix version < 1.3) discarded"; fi
 
 # newer versions
-RUN if mix archive.install hex phx_new ${PHOENIX_VERSION}; \
+RUN if mix archive.install --force hex phx_new ${PHOENIX_VERSION}; \
 	then echo "new version installed"; else echo "new version installation (phoenix version >= 1.3) discarded"; fi
 
 # Clean up installation
